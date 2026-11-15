@@ -1,734 +1,325 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeFlow | Visual Development Platform</title>
+    <title>Toyota Corolla Technical Service & Repair Manual (E170 / E210)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & JetBrains Mono for technical specs -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Automotive & UI Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9fbfd;
-        }
-        
-        h1, h2, h3, h4 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header & Navigation */
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo-icon {
-            color: #4361ee;
-            font-size: 28px;
-            margin-right: 10px;
-        }
-        
-        .logo-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 24px;
-            font-weight: 700;
-            color: #333;
-        }
-        
-        .logo-text span {
-            color: #4361ee;
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: #4361ee;
-        }
-        
-        .cta-button {
-            background-color: #4361ee;
-            color: white;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-        
-        .cta-button:hover {
-            background-color: #3a56d4;
-            transform: translateY(-2px);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: #333;
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 150px 0 100px;
-            background: linear-gradient(135deg, #f0f4ff 0%, #f9fbfd 100%);
-        }
-        
-        .hero-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .hero-text {
-            flex: 1;
-            padding-right: 40px;
-        }
-        
-        .hero-text h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            color: #222;
-        }
-        
-        .hero-text h1 span {
-            color: #4361ee;
-        }
-        
-        .hero-text p {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 30px;
-            max-width: 600px;
-        }
-        
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .secondary-button {
-            background-color: white;
-            color: #4361ee;
-            border: 2px solid #4361ee;
-            padding: 12px 28px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .secondary-button:hover {
-            background-color: #f0f4ff;
-        }
-        
-        .hero-image {
-            flex: 1;
-            text-align: center;
-        }
-        
-        .hero-image img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 20px 40px rgba(67, 97, 238, 0.15);
-        }
-        
-        /* Features Section */
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-        
-        .section-title h2 {
-            font-size: 36px;
-            color: #222;
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .features {
-            padding: 100px 0;
-            background-color: white;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-        
-        .feature-card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon {
-            background-color: #eef2ff;
-            color: #4361ee;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 28px;
-        }
-        
-        .feature-card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-        }
-        
-        .feature-card p {
-            color: #666;
-        }
-        
-        /* Benefits Section */
-        .benefits {
-            padding: 100px 0;
-            background-color: #f0f4ff;
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        
-        .benefit-item {
-            text-align: center;
-            padding: 30px 20px;
-        }
-        
-        .benefit-icon {
-            color: #4361ee;
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-        
-        .benefit-item h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-        }
-        
-        .benefit-item p {
-            color: #666;
-        }
-        
-        /* Testimonials */
-        .testimonials {
-            padding: 100px 0;
-            background-color: white;
-        }
-        
-        .testimonial-slider {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-        
-        .testimonial {
-            background: #f9fbfd;
-            padding: 40px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .testimonial-text {
-            font-size: 18px;
-            font-style: italic;
-            margin-bottom: 30px;
-            color: #555;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .author-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: #ddd;
-            margin-right: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #4361ee;
-            font-size: 24px;
-        }
-        
-        .author-info h4 {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-        
-        .author-info p {
-            color: #777;
-            font-size: 14px;
-        }
-        
-        /* Pricing Section */
-        .pricing {
-            padding: 100px 0;
-            background-color: #f9fbfd;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-        
-        .pricing-card {
-            background: white;
-            border-radius: 10px;
-            padding: 40px 30px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        
-        .pricing-card.featured {
-            border-top: 5px solid #4361ee;
-            transform: scale(1.05);
-            position: relative;
-        }
-        
-        .featured-badge {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #4361ee;
-            color: white;
-            padding: 5px 20px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-10px);
-        }
-        
-        .plan-name {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .plan-price {
-            font-size: 48px;
-            font-weight: 700;
-            color: #4361ee;
-            margin-bottom: 20px;
-        }
-        
-        .plan-price span {
-            font-size: 16px;
-            color: #777;
-        }
-        
-        .plan-features {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-        
-        .plan-features li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            color: #555;
-        }
-        
-        .plan-features li:last-child {
-            border-bottom: none;
-        }
-        
-        /* CTA Section */
-        .cta-section {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #4361ee 0%, #3a56d4 100%);
-            text-align: center;
-            color: white;
-        }
-        
-        .cta-section h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        
-        .cta-section p {
-            font-size: 18px;
-            max-width: 700px;
-            margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-        
-        .cta-section .cta-button {
-            background-color: white;
-            color: #4361ee;
-            font-size: 16px;
-            padding: 15px 40px;
-        }
-        
-        .cta-section .cta-button:hover {
-            background-color: #f0f4ff;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: #222;
-            color: #ccc;
-            padding: 70px 0 20px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-        
-        .footer-column h3 {
-            font-size: 20px;
-            color: white;
-            margin-bottom: 25px;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: #aaa;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: #4361ee;
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid #444;
-            font-size: 14px;
-            color: #888;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .hero-content {
-                flex-direction: column;
-            }
-            
-            .hero-text {
-                padding-right: 0;
-                margin-bottom: 50px;
-                text-align: center;
-            }
-            
-            .hero-text p {
-                margin: 0 auto 30px;
-            }
-            
-            .pricing-card.featured {
-                transform: none;
-            }
-            
-            .pricing-card.featured:hover {
-                transform: translateY(-10px);
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        toyota: {
+                            red: '#EB0A1E',
+                            darkred: '#B80717',
+                            slate: '#0F172A',
+                            steel: '#1E293B',
+                            silver: '#F1F5F9'
+                        }
+                    }
+                }
             }
         }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .hero-text h1 {
-                font-size: 36px;
-            }
-            
-            .section-title h2 {
-                font-size: 30px;
-            }
-            
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .hero-buttons button {
-                width: 100%;
-                max-width: 300px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero {
-                padding: 130px 0 80px;
-            }
-            
-            .features, .benefits, .testimonials, .pricing, .cta-section {
-                padding: 70px 0;
-            }
-            
-            .feature-card, .testimonial {
-                padding: 25px;
-            }
-            
-            .plan-price {
-                font-size: 36px;
-            }
-        }
-    </style>
+    </script>
 </head>
-<body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <div class="logo-icon"><i class="fas fa-bezier-curve"></i></div>
-                    <div class="logo-text">Code<span>Flow</span></div>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-toyota-red selection:text-white">
+
+    <!-- Top Technical Header Bar -->
+    <div class="bg-slate-950 text-slate-400 text-xs py-2 px-4 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="font-mono text-slate-300"><i class="fa-solid fa-wrench text-toyota-red mr-1.5"></i>DOC ID: TIS-COR-2014-2025</span>
+                <span class="hidden sm:inline">|</span>
+                <span class="hidden sm:inline">CHASSIS: ZRE172 / ZRE212 / MZEA12 (1.8L 2ZR-FE & 2.0L M20A-FKS)</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="inline-flex items-center gap-1.5 text-emerald-400 font-mono">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    METRIC / SAE SPECS VERIFIED
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Multi-Level Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-slate-900 text-white shadow-lg border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                
+                <!-- Brand / Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-lg bg-toyota-red flex items-center justify-center shadow-md group-hover:bg-toyota-darkred transition-colors">
+                        <i class="fa-solid fa-car-side text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="font-extrabold tracking-tight text-lg block leading-none">COROLLA <span class="text-toyota-red">TECH</span></span>
+                        <span class="text-[11px] font-mono text-slate-400 tracking-wider uppercase">Service & Repair Guide</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Multi-Level Dropdown Menu -->
+                <nav class="hidden lg:flex items-center space-x-1" aria-label="Main Navigation">
+                    
+                    <!-- Level 1: Engine & Fluids (With Submenu) -->
+                    <div class="relative group">
+                        <button class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-white hover:bg-slate-800 flex items-center gap-1.5 transition-colors">
+                            <i class="fa-solid fa-oil-can text-toyota-red text-xs"></i>
+                            <span>Engine & Fluids</span>
+                            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 group-hover:rotate-180 transition-transform duration-200"></i>
+                        </button>
+                        <!-- Dropdown Submenu -->
+                        <div class="absolute left-0 mt-1 w-64 rounded-xl bg-slate-800 border border-slate-700 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50 overflow-hidden">
+                            <div class="px-4 py-2.5 bg-slate-900/60 border-b border-slate-700 text-[11px] font-mono text-slate-400 uppercase tracking-wider">
+                                Powertrain Maintenance
+                            </div>
+                            <a href="#engine-oil" class="block px-4 py-3 text-sm text-slate-200 hover:bg-toyota-red hover:text-white transition-colors border-b border-slate-700/50">
+                                <div class="font-semibold">0W-16 / 0W-20 Oil & Filter</div>
+                                <div class="text-xs opacity-75">Drain plug torque & cartridge housing</div>
+                            </a>
+                            <a href="#engine-coolant" class="block px-4 py-3 text-sm text-slate-200 hover:bg-toyota-red hover:text-white transition-colors border-b border-slate-700/50">
+                                <div class="font-semibold">Super Long Life Coolant</div>
+                                <div class="text-xs opacity-75">Radiator flush & air bleed procedure</div>
+                            </a>
+                            <a href="#engine-spark" class="block px-4 py-3 text-sm text-slate-200 hover:bg-toyota-red hover:text-white transition-colors">
+                                <div class="font-semibold">Iridium Spark Plugs & Coils</div>
+                                <div class="text-xs opacity-75">100k mile ignition service</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Level 1: Brake System (With Submenu) -->
+                    <div class="relative group">
+                        <button class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-white hover:bg-slate-800 flex items-center gap-1.5 transition-colors">
+                            <i class="fa-solid fa-compact-disc text-toyota-red text-xs"></i>
+                            <span>Brake System</span>
+                            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 group-hover:rotate-180 transition-transform duration-200"></i>
+                        </button>
+                        <!-- Dropdown Submenu -->
+                        <div class="absolute left-0 mt-1 w-64 rounded-xl bg-slate-800 border border-slate-700 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50 overflow-hidden">
+                            <div class="px-4 py-2.5 bg-slate-900/60 border-b border-slate-700 text-[11px] font-mono text-slate-400 uppercase tracking-wider">
+                                Hydraulic & EPB Systems
+                            </div>
+                            <a href="#brakes-front" class="block px-4 py-3 text-sm text-slate-200 hover:bg-toyota-red hover:text-white transition-colors border-b border-slate-700/50">
+                                <div class="font-semibold">Front Disc Pads & Rotors</div>
+                                <div class="text-xs opacity-75">Caliper bracket torque & slide pins</div>
+                            </a>
+                            <a href="#brakes-epb" class="block px-4 py-3 text-sm text-slate-200 hover:bg-toyota-red hover:text-white transition-colors border-b border-slate-700/50">
+                                <div class="font-semibold">Rear Electronic Parking Brake</div>
+                                <div class="text-xs opacity-75">EPB Service Mode retraction guide</div>
+                            </a>
+                            <a href="#brakes-bleed" class="block px-4 py-3 text-sm text-slate-200 hover:bg-toyota-red hover:text-white transition-colors">
+                                <div class="font-semibold">DOT 3 Brake Fluid Bleed</div>
+                                <div class="text-xs opacity-75">Wheel sequence & ABS precautions</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Level 1: Suspension & Steering (With Submenu) -->
+                    <div class="relative group">
+                        <button class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-white hover:bg-slate-800 flex items-center gap-1.5 transition-colors">
+                            <i class="fa-solid fa-gear text-toyota-red text-xs"></i>
+                            <span>Suspension</span>
+                            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 group-hover:rotate-180 transition-transform duration-200"></i>
+                        </button>
+                        <!-- Dropdown Submenu -->
+                        <div class="absolute left-0 mt-1 w-64 rounded-xl bg-slate-800 border border-slate-700 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50 overflow-hidden">
+                            <div class="px-4 py-2.5 bg-slate-900/60 border-b border-slate-700 text-[11px] font-mono text-slate-400 uppercase tracking-wider">
+                                Chassis & Geometry
+                            </div>
+                            <a href="#suspension-struts" class="block px-4 py-3 text-sm text-slate-200 hover:bg-toyota-red hover:text-white transition-colors border-b border-slate-700/50">
+                                <div class="font-semibold">MacPherson Struts & Links</div>
+                                <div class="text-xs opacity-75">Front strut assembly & sway bar links</div>
+                            </a>
+                            <a href="#suspension-alignment" class="block px-4 py-3 text-sm text-slate-200 hover:bg-toyota-red hover:text-white transition-colors">
+                                <div class="font-semibold">4-Wheel Alignment Specs</div>
+                                <div class="text-xs opacity-75">Camber, caster & toe factory targets</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Level 1: Electrical & Battery (With Submenu) -->
+                    <div class="relative group">
+                        <button class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-white hover:bg-slate-800 flex items-center gap-1.5 transition-colors">
+                            <i class="fa-solid fa-car-battery text-toyota-red text-xs"></i>
+                            <span>Electrical</span>
+                            <i class="fa-solid fa-chevron-down text-[10px] text-slate-400 group-hover:rotate-180 transition-transform duration-200"></i>
+                        </button>
+                        <!-- Dropdown Submenu -->
+                        <div class="absolute left-0 mt-1 w-64 rounded-xl bg-slate-800 border border-slate-700 shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50 overflow-hidden">
+                            <div class="px-4 py-2.5 bg-slate-900/60 border-b border-slate-700 text-[11px] font-mono text-slate-400 uppercase tracking-wider">
+                                12V & Charging System
+                            </div>
+                            <a href="#electrical-battery" class="block px-4 py-3 text-sm text-slate-200 hover:bg-toyota-red hover:text-white transition-colors border-b border-slate-700/50">
+                                <div class="font-semibold">12V Battery & Alternator Test</div>
+                                <div class="text-xs opacity-75">Group 35 / H4 replacement & reset</div>
+                            </a>
+                            <a href="#electrical-fuses" class="block px-4 py-3 text-sm text-slate-200 hover:bg-toyota-red hover:text-white transition-colors">
+                                <div class="font-semibold">Engine & Cabin Fuse Boxes</div>
+                                <div class="text-xs opacity-75">Critical relays & circuit diagnostics</div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Level 1: Interactive Tools -->
+                    <a href="#diagnostics-tool" class="px-3.5 py-2 rounded-lg text-sm font-medium text-slate-200 hover:text-white hover:bg-slate-800 flex items-center gap-1.5 transition-colors">
+                        <i class="fa-solid fa-laptop-medical text-toyota-red text-xs"></i>
+                        <span>Diagnostics</span>
+                    </a>
+
+                    <a href="#maintenance-checklist" class="ml-2 px-4 py-2 rounded-lg text-sm font-semibold bg-toyota-red hover:bg-toyota-darkred text-white shadow transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                        <span>Checklist</span>
+                    </a>
+                </nav>
+
+                <!-- Mobile Hamburger Button -->
+                <div class="flex items-center lg:hidden">
+                    <button id="mobile-menu-btn" type="button" class="p-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-toyota-red" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i id="mobile-menu-icon" class="fa-solid fa-bars text-xl"></i>
+                    </button>
                 </div>
-                
-                <ul class="nav-links">
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#benefits">Benefits</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#">Resources</a></li>
-                </ul>
-                
-                <button class="cta-button">Start Free Trial</button>
-                <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
-            </nav>
+            </div>
+        </div>
+
+        <!-- Mobile Multi-Level Accordion Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-slate-900 border-t border-slate-800 px-4 pt-2 pb-6 space-y-1 max-h-[85vh] overflow-y-auto">
+            
+            <!-- Mobile Submenu 1 -->
+            <div class="border-b border-slate-800 pb-2">
+                <button type="button" onclick="toggleMobileSubmenu('mob-engine', 'icon-engine')" class="w-full flex justify-between items-center py-3 px-2 text-left font-semibold text-slate-200 hover:text-white">
+                    <span><i class="fa-solid fa-oil-can text-toyota-red w-6"></i> Engine & Fluids</span>
+                    <i id="icon-engine" class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform"></i>
+                </button>
+                <div id="mob-engine" class="hidden pl-8 pr-2 space-y-2 pb-2">
+                    <a href="#engine-oil" onclick="closeMobileMenu()" class="block py-2 text-sm text-slate-300 hover:text-toyota-red">• 0W-16 / 0W-20 Oil & Filter Change</a>
+                    <a href="#engine-coolant" onclick="closeMobileMenu()" class="block py-2 text-sm text-slate-300 hover:text-toyota-red">• Super Long Life Coolant Flush</a>
+                    <a href="#engine-spark" onclick="closeMobileMenu()" class="block py-2 text-sm text-slate-300 hover:text-toyota-red">• Iridium Spark Plugs Replacement</a>
+                </div>
+            </div>
+
+            <!-- Mobile Submenu 2 -->
+            <div class="border-b border-slate-800 pb-2">
+                <button type="button" onclick="toggleMobileSubmenu('mob-brakes', 'icon-brakes')" class="w-full flex justify-between items-center py-3 px-2 text-left font-semibold text-slate-200 hover:text-white">
+                    <span><i class="fa-solid fa-compact-disc text-toyota-red w-6"></i> Brake System</span>
+                    <i id="icon-brakes" class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform"></i>
+                </button>
+                <div id="mob-brakes" class="hidden pl-8 pr-2 space-y-2 pb-2">
+                    <a href="#brakes-front" onclick="closeMobileMenu()" class="block py-2 text-sm text-slate-300 hover:text-toyota-red">• Front Disc Pads & Rotors</a>
+                    <a href="#brakes-epb" onclick="closeMobileMenu()" class="block py-2 text-sm text-slate-300 hover:text-toyota-red">• Rear EPB Service Mode Guide</a>
+                    <a href="#brakes-bleed" onclick="closeMobileMenu()" class="block py-2 text-sm text-slate-300 hover:text-toyota-red">• DOT 3 Hydraulic Bleed Sequence</a>
+                </div>
+            </div>
+
+            <!-- Mobile Submenu 3 -->
+            <div class="border-b border-slate-800 pb-2">
+                <button type="button" onclick="toggleMobileSubmenu('mob-susp', 'icon-susp')" class="w-full flex justify-between items-center py-3 px-2 text-left font-semibold text-slate-200 hover:text-white">
+                    <span><i class="fa-solid fa-gear text-toyota-red w-6"></i> Suspension & Alignment</span>
+                    <i id="icon-susp" class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform"></i>
+                </button>
+                <div id="mob-susp" class="hidden pl-8 pr-2 space-y-2 pb-2">
+                    <a href="#suspension-struts" onclick="closeMobileMenu()" class="block py-2 text-sm text-slate-300 hover:text-toyota-red">• Front MacPherson Struts & Links</a>
+                    <a href="#suspension-alignment" onclick="closeMobileMenu()" class="block py-2 text-sm text-slate-300 hover:text-toyota-red">• 4-Wheel Alignment Specifications</a>
+                </div>
+            </div>
+
+            <!-- Mobile Submenu 4 -->
+            <div class="border-b border-slate-800 pb-2">
+                <button type="button" onclick="toggleMobileSubmenu('mob-elec', 'icon-elec')" class="w-full flex justify-between items-center py-3 px-2 text-left font-semibold text-slate-200 hover:text-white">
+                    <span><i class="fa-solid fa-car-battery text-toyota-red w-6"></i> Electrical & Battery</span>
+                    <i id="icon-elec" class="fa-solid fa-chevron-down text-xs text-slate-400 transition-transform"></i>
+                </button>
+                <div id="mob-elec" class="hidden pl-8 pr-2 space-y-2 pb-2">
+                    <a href="#electrical-battery" onclick="closeMobileMenu()" class="block py-2 text-sm text-slate-300 hover:text-toyota-red">• 12V Battery & Alternator Testing</a>
+                    <a href="#electrical-fuses" onclick="closeMobileMenu()" class="block py-2 text-sm text-slate-300 hover:text-toyota-red">• Engine & Cabin Fuse Diagram</a>
+                </div>
+            </div>
+
+            <!-- Direct Mobile Links -->
+            <div class="pt-2 space-y-2">
+                <a href="#diagnostics-tool" onclick="closeMobileMenu()" class="block py-3 px-2 font-semibold text-slate-200 hover:text-toyota-red">
+                    <i class="fa-solid fa-laptop-medical text-toyota-red w-6"></i> OBD-II & Symptom Diagnostics
+                </a>
+                <a href="#maintenance-checklist" onclick="closeMobileMenu()" class="block py-3 px-4 rounded-lg bg-toyota-red text-white font-semibold text-center">
+                    <i class="fa-solid fa-clipboard-check mr-2"></i> Interactive Service Checklist
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Build Apps Faster With <span>Visual Development</span></h1>
-                    <p>CodeFlow empowers teams to create enterprise-grade applications with minimal coding. Drag, drop, and connect components to build powerful web and mobile apps in record time.</p>
-                    <div class="hero-buttons">
-                        <button class="cta-button">Start Building Free</button>
-                        <button class="secondary-button">Watch Demo</button>
+    <!-- Hero Technical Banner -->
+    <section class="relative bg-slate-900 text-white overflow-hidden border-b border-slate-800">
+        <!-- Subtle Technical Grid Pattern -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#94a3b8 1px, transparent 1px); background-size: 24px 24px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800 border border-slate-700 text-xs font-mono text-slate-300">
+                        <span class="w-2 h-2 rounded-full bg-toyota-red"></span>
+                        11TH & 12TH GENERATION (2014–PRESENT) WORKSHOP MANUAL
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                        Toyota Corolla <span class="text-toyota-red">Technical Repair</span> & Maintenance Procedures
+                    </h1>
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+                        Factory-grade step-by-step service procedures, calibrated torque specifications, fluid capacities, and interactive diagnostic troubleshooting for the 1.8L (2ZR-FE) and 2.0L Dynamic Force (M20A-FKS) platforms.
+                    </p>
+                    <div class="flex flex-wrap gap-3 pt-2">
+                        <a href="#engine-oil" class="px-6 py-3 rounded-xl bg-toyota-red hover:bg-toyota-darkred text-white font-semibold text-sm shadow-lg shadow-toyota-red/20 transition-all flex items-center gap-2">
+                            <span>Start Service Procedures</span>
+                            <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                        <a href="#diagnostics-tool" class="px-6 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-semibold text-sm transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-stethoscope text-toyota-red"></i>
+                            <span>Symptom & Code Finder</span>
+                        </a>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="CodeFlow Platform Interface">
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <div class="section-title">
-                <h2>Powerful Features for Rapid Development</h2>
-                <p>CodeFlow provides all the tools you need to build, deploy, and scale applications without writing extensive code.</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-th-large"></i>
-                    </div>
-                    <h3>Visual Builder</h3>
-                    <p>Drag and drop UI components to design responsive interfaces. Connect data sources with simple point-and-click actions.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>Database Integration</h3>
-                    <p>Connect to any data source with built-in connectors. Automatically generate CRUD operations without writing SQL.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
-                    </div>
-                    <h3>Cross-Platform</h3>
-                    <p>Build once, deploy everywhere. Generate applications for web, iOS, and Android from a single visual design.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Extensible with Code</h3>
-                    <p>Add custom functionality with JavaScript when needed. Our platform doesn't limit your creativity or complexity.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Enterprise Security</h3>
-                    <p>Built-in authentication, authorization, and data encryption. SOC2 compliant with enterprise-grade security features.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-rocket"></i>
-                    </div>
-                    <h3>One-Click Deployment</h3>
-                    <p>Deploy to cloud or on-premises with a single click. Automatic scaling and monitoring included.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section class="benefits" id="benefits">
-        <div class="container">
-            <div class="section-title">
-                <h2>Why Choose CodeFlow?</h2>
-                <p>Join thousands of companies accelerating their digital transformation with low-code development.</p>
-            </div>
-            
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-bolt"></i>
-                    </div>
-                    <h3>10x Faster Development</h3>
-                    <p>Build applications in days instead of months with visual development tools.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <h3>Reduce Costs by 70%</h3>
-                    <p>Lower development and maintenance costs with fewer resources required.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Citizen Developers</h3>
-                    <p>Enable business users to build solutions with minimal IT assistance.</p>
-                </div>
-                
-                <div class="benefit-item">
-                    <div class="benefit-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Scale Effortlessly</h3>
-                    <p>From prototype to enterprise-scale applications with the same platform.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <div class="section-title">
-                <h2>Trusted by Industry Leaders</h2>
-                <p>See what our customers have to say about their experience with CodeFlow.</p>
-            </div>
-            
-            <div class="testimonial-slider">
-                <div class="testimonial">
-                    <div class="testimonial-text">
-                        "CodeFlow transformed how we deliver solutions to our business units. What used to take 6 months now takes 3 weeks. Our development team can focus on complex problems while business teams build their own solutions."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SC</div>
-                        <div class="author-info">
-                            <h4>Sarah Chen</h4>
-                            <p>CTO, TechGrowth Inc.</p>
+                <!-- Quick Spec Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-slate-800/90 backdrop-blur border border-slate-700 rounded-2xl p-6 shadow-2xl">
+                        <div class="flex items-center justify-between border-b border-slate-700 pb-4 mb-4">
+                            <h2 class="font-bold text-sm uppercase tracking-wider text-slate-200 flex items-center gap-2">
+                                <i class="fa-solid fa-gauge-high text-toyota-red"></i> Quick Reference Specs
+                            </h2>
+                            <span class="text-xs font-mono bg-slate-900 text-slate-400 px-2.5 py-1 rounded-md">SAE / METRIC</span>
+                        </div>
+                        <div class="space-y-3 font-mono text-xs sm:text-sm">
+                            <div class="flex justify-between py-1.5 border-b border-slate-700/60">
+                                <span class="text-slate-400">Engine Oil (2.0L M20A):</span>
+                                <span class="text-white font-semibold">4.5 Qt (4.3L) SAE 0W-16</span>
+                            </div>
+                            <div class="flex justify-between py-1.5 border-b border-slate-700/60">
+                                <span class="text-slate-400">Engine Oil (1.8L 2ZR):</span>
+                                <span class="text-white font-semibold">4.4 Qt (4.2L) SAE 0W-20</span>
+                            </div>
+                            <div class="flex justify-between py-1.5 border-b border-slate-700/60">
+                                <span class="text-slate-400">Oil Drain Plug Torque:</span>
+                                <span class="text-amber-400 font-semibold">30 ft-lbs (40 N·m)</span>
+                            </div>
+                            <div class="flex justify-between py-1.5 border-b border-slate-700/60">
+                                <span class="text-slate-400">Wheel Lug Nut Torque:</span>
+                                <span class="text-amber-400 font-semibold">76 ft-lbs (103 N·m)</span>
+                            </div>
+                            <div class="flex justify-between py-1.5">
+                                <span class="text-slate-400">Spark Plug Gap (Iridium):</span>
+                                <span class="text-emerald-400 font-semibold">0.043 in (1.1 mm) Pre-gapped</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -736,230 +327,720 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-title">
-                <h2>Simple, Transparent Pricing</h2>
-                <p>Choose the plan that fits your needs. All plans include core features with no hidden fees.</p>
+    <!-- Main Technical Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+        <!-- Mandatory Shop Safety Banner -->
+        <div class="bg-amber-50 border-l-4 border-amber-500 rounded-r-xl p-5 shadow-sm flex items-start gap-4">
+            <div class="text-amber-600 text-xl mt-0.5">
+                <i class="fa-solid fa-triangle-exclamation"></i>
             </div>
-            
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <h3 class="plan-name">Starter</h3>
-                    <div class="plan-price">$29<span>/month</span></div>
-                    <ul class="plan-features">
-                        <li>Up to 5 users</li>
-                        <li>10 GB storage</li>
-                        <li>Basic components</li>
-                        <li>Community support</li>
-                        <li>1 production app</li>
-                    </ul>
-                    <button class="secondary-button">Get Started</button>
-                </div>
-                
-                <div class="pricing-card featured">
-                    <div class="featured-badge">Most Popular</div>
-                    <h3 class="plan-name">Professional</h3>
-                    <div class="plan-price">$89<span>/month</span></div>
-                    <ul class="plan-features">
-                        <li>Up to 25 users</li>
-                        <li>100 GB storage</li>
-                        <li>All components</li>
-                        <li>Priority support</li>
-                        <li>10 production apps</li>
-                        <li>Custom branding</li>
-                    </ul>
-                    <button class="cta-button">Try Free for 14 Days</button>
-                </div>
-                
-                <div class="pricing-card">
-                    <h3 class="plan-name">Enterprise</h3>
-                    <div class="plan-price">Custom</div>
-                    <ul class="plan-features">
-                        <li>Unlimited users</li>
-                        <li>Unlimited storage</li>
-                        <li>All features included</li>
-                        <li>24/7 dedicated support</li>
-                        <li>Unlimited apps</li>
-                        <li>On-premises option</li>
-                    </ul>
-                    <button class="secondary-button">Contact Sales</button>
-                </div>
+            <div>
+                <h3 class="font-bold text-amber-900 text-sm uppercase tracking-wide">Workshop Safety Protocol</h3>
+                <p class="text-amber-800 text-sm mt-1 leading-relaxed">
+                    Always support the vehicle on rated <strong>jack stands</strong> placed on factory pinch-weld lift points before working underneath. Never rely solely on a hydraulic floor jack. Disconnect the negative (-) 12V battery terminal prior to servicing airbag, starter, or primary electrical circuits.
+                </p>
             </div>
         </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Start Building Today</h2>
-            <p>Join over 10,000 companies that use CodeFlow to accelerate their application development. No credit card required for the free trial.</p>
-            <button class="cta-button">Get Started for Free</button>
-        </div>
-    </section>
+        <!-- ===================================================================== -->
+        <!-- SECTION 1: ENGINE & FLUIDS                                            -->
+        <!-- ===================================================================== -->
+        <section id="engine-oil" class="scroll-mt-24 space-y-8">
+            <div class="border-b-2 border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                <div>
+                    <span class="text-xs font-mono font-bold text-toyota-red uppercase tracking-widest">Section 01 // Powertrain</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Engine & Fluid Maintenance</h2>
+                </div>
+                <span class="text-xs font-mono bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg self-start sm:self-auto">
+                    INTERVAL: EVERY 5,000 – 10,000 MILES
+                </span>
+            </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <div class="logo">
-                        <div class="logo-icon"><i class="fas fa-bezier-curve"></i></div>
-                        <div class="logo-text">Code<span>Flow</span></div>
+            <!-- Procedure Card 1.1: Engine Oil & Filter -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="bg-slate-900 text-white px-6 py-4 flex flex-wrap justify-between items-center gap-3">
+                    <h3 class="font-bold text-lg flex items-center gap-2.5">
+                        <span class="w-7 h-7 rounded-md bg-toyota-red text-white text-xs font-mono flex items-center justify-center">1.1</span>
+                        Synthetic Engine Oil & Filter Replacement
+                    </h3>
+                    <div class="flex items-center gap-2 text-xs font-mono">
+                        <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300">DIFFICULTY: 1/5</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-800 text-emerald-400">TIME: 30 MIN</span>
                     </div>
-                    <p style="margin-top: 20px; color: #aaa;">The leading visual development platform for building enterprise applications with minimal coding.</p>
                 </div>
-                
-                <div class="footer-column">
-                    <h3>Product</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">Use Cases</a></li>
-                        <li><a href="#">Integrations</a></li>
-                        <li><a href="#">Roadmap</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Resources</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Tutorials</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Community</a></li>
-                        <li><a href="#">Support</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Company</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
+
+                <div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <!-- Left: Tools & Torque Specs -->
+                    <div class="lg:col-span-4 space-y-5">
+                        <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                            <h4 class="text-xs font-mono font-bold uppercase text-slate-500 mb-3 flex items-center gap-1.5">
+                                <i class="fa-solid fa-toolbox text-toyota-red"></i> Required Tools & Parts
+                            </h4>
+                            <ul class="text-sm text-slate-700 space-y-2">
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-600 mt-1 text-xs"></i> 14mm 6-point socket & ratchet</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-600 mt-1 text-xs"></i> 64mm 14-flute Toyota oil filter wrench</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-600 mt-1 text-xs"></i> Calibrated torque wrench (10–80 ft-lbs)</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-600 mt-1 text-xs"></i> OEM Oil Filter (90915-YZZN1 or 04152-YZZA6)</li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-600 mt-1 text-xs"></i> New crush washer (P/N: 90430-12031)</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-slate-900 text-slate-200 rounded-xl p-4 font-mono text-xs space-y-2.5">
+                            <div class="text-toyota-red font-bold uppercase tracking-wider border-b border-slate-800 pb-1.5">
+                                Factory Torque Values
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Oil Pan Drain Bolt:</span>
+                                <span class="text-white font-bold">30 ft-lbs (40 N·m)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Cartridge Housing (2ZR):</span>
+                                <span class="text-white font-bold">18 ft-lbs (25 N·m)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Spin-On Filter (M20A):</span>
+                                <span class="text-white font-bold">3/4 Turn after contact</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Step-by-Step Instructions -->
+                    <div class="lg:col-span-8 space-y-4">
+                        <h4 class="font-bold text-slate-900 text-base">Step-by-Step Service Procedure</h4>
+                        <ol class="space-y-3 text-sm text-slate-700">
+                            <li class="flex gap-3">
+                                <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-800 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">1</span>
+                                <div><strong>Warm & Lift Vehicle:</strong> Run engine for 3 minutes to warm oil, shut off, and raise front of vehicle securely onto jack stands. Remove the lower plastic splash shield access flap (if equipped).</div>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-800 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">2</span>
+                                <div><strong>Drain Engine Oil:</strong> Place a 6-quart drain pan beneath the oil pan. Loosen the 14mm drain plug counter-clockwise and allow oil to drain completely for 10 minutes.</div>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-800 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">3</span>
+                                <div><strong>Replace Oil Filter:</strong> Use the 64mm flute wrench to remove the oil filter. If servicing the 1.8L 2ZR-FE cartridge housing, replace both rubber O-rings and lubricate them with fresh engine oil before installation. Torque housing to <strong>18 ft-lbs</strong>.</div>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-800 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">4</span>
+                                <div><strong>Install Drain Plug:</strong> Scrape off any stuck old crush washer from the oil pan. Install a new aluminum crush washer and torque the 14mm drain plug to <strong>30 ft-lbs (40 N·m)</strong>.</div>
+                            </li>
+                            <li class="flex gap-3">
+                                <span class="w-6 h-6 rounded-full bg-slate-200 text-slate-800 font-mono font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">5</span>
+                                <div><strong>Refill & Verify Level:</strong> Lower vehicle to level ground. Fill with <strong>4.4–4.5 quarts</strong> of full synthetic 0W-16 (M20A-FKS) or 0W-20 (2ZR-FE). Start engine for 30 seconds, inspect for leaks, shut off, wait 5 minutes, and confirm dipstick level is between the two dots.</div>
+                            </li>
+                        </ol>
+                    </div>
                 </div>
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 CodeFlow. All rights reserved.</p>
+
+            <!-- Procedure Cards 1.2 & 1.3 Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 1.2 Coolant -->
+                <div id="engine-coolant" class="scroll-mt-24 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded bg-pink-100 text-pink-800 font-mono text-xs font-bold">COOLING SYSTEM</span>
+                            <span class="font-mono text-xs text-slate-500">100K MI / 10 YRS</span>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-2">1.2 Super Long Life Coolant (SLLC) Service</h3>
+                        <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                            Toyota Corolla models require pre-diluted 50/50 <strong>Pink Toyota Super Long Life Coolant</strong> (oat/phosphate hybrid). Never mix with standard green ethylene glycol coolant.
+                        </p>
+                        <ul class="text-sm text-slate-700 space-y-2 mb-4">
+                            <li><strong>1. Drain:</strong> Ensure engine is completely cold. Open radiator cap, attach 3/8" clear hose to lower radiator petcock, and open valve.</li>
+                            <li><strong>2. Refill & Bleed:</strong> Close petcock hand-tight. Fill using a spill-free funnel until radiator neck is full. Run heater on MAX HOT at 2,000 RPM until radiator cooling fans cycle twice to purge air pockets.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-100 rounded-lg p-3 font-mono text-xs flex justify-between items-center text-slate-800">
+                        <span>Total System Capacity:</span>
+                        <span class="font-bold">5.8 – 6.2 Quarts (5.5 – 5.9 L)</span>
+                    </div>
+                </div>
+
+                <!-- 1.3 Spark Plugs -->
+                <div id="engine-spark" class="scroll-mt-24 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="px-2.5 py-1 rounded bg-indigo-100 text-indigo-800 font-mono text-xs font-bold">IGNITION SYSTEM</span>
+                            <span class="font-mono text-xs text-slate-500">100K – 120K MILES</span>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-2">1.3 Denso / NGK Iridium Spark Plugs</h3>
+                        <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                            Use only OEM-spec fine-wire iridium plugs (<strong>Denso SC16HR11</strong> for 2ZR-FE or <strong>NGK DILKAR6T8</strong> for M20A-FKS). Do not manually gap iridium tips as the fine electrode can fracture.
+                        </p>
+                        <ul class="text-sm text-slate-700 space-y-2 mb-4">
+                            <li><strong>1. Coil Removal:</strong> Unplug wiring harness tabs and remove the four 10mm bolts securing the ignition coils.</li>
+                            <li><strong>2. Installation:</strong> Thread new plugs by hand using a 14mm thin-wall magnetic spark plug socket to prevent cross-threading into the aluminum cylinder head.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-100 rounded-lg p-3 font-mono text-xs flex justify-between items-center text-slate-800">
+                        <span>Spark Plug Torque:</span>
+                        <span class="font-bold text-toyota-red">15 ft-lbs (20 N·m) DRY</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- SECTION 2: BRAKE SYSTEM                                               -->
+        <!-- ===================================================================== -->
+        <section id="brakes-front" class="scroll-mt-24 space-y-8">
+            <div class="border-b-2 border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                <div>
+                    <span class="text-xs font-mono font-bold text-toyota-red uppercase tracking-widest">Section 02 // Braking & ABS</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Brake System Overhaul & EPB</h2>
+                </div>
+                <span class="text-xs font-mono bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg self-start sm:self-auto">
+                    MIN PAD THICKNESS: 2.0 MM
+                </span>
+            </div>
+
+            <!-- Procedure Card 2.1: Front Disc Brakes -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="bg-slate-900 text-white px-6 py-4 flex flex-wrap justify-between items-center gap-3">
+                    <h3 class="font-bold text-lg flex items-center gap-2.5">
+                        <span class="w-7 h-7 rounded-md bg-toyota-red text-white text-xs font-mono flex items-center justify-center">2.1</span>
+                        Front Brake Pads & Rotors Replacement
+                    </h3>
+                    <div class="flex items-center gap-2 text-xs font-mono">
+                        <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300">DIFFICULTY: 2/5</span>
+                        <span class="px-2.5 py-1 rounded bg-slate-800 text-emerald-400">TIME: 60 MIN</span>
+                    </div>
+                </div>
+
+                <div class="p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    <div class="lg:col-span-4 space-y-4">
+                        <div class="bg-slate-900 text-slate-200 rounded-xl p-4 font-mono text-xs space-y-2.5">
+                            <div class="text-toyota-red font-bold uppercase tracking-wider border-b border-slate-800 pb-1.5">
+                                Brake Fastener Torques
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Caliper Slide Pins (14mm):</span>
+                                <span class="text-white font-bold">25 ft-lbs (34 N·m)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Caliper Bracket (17mm):</span>
+                                <span class="text-white font-bold">79 ft-lbs (107 N·m)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Bleeder Screw (8mm):</span>
+                                <span class="text-white font-bold">8 ft-lbs (11 N·m)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Wheel Lug Nuts (21mm):</span>
+                                <span class="text-amber-400 font-bold">76 ft-lbs (103 N·m)</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-xs text-blue-900 space-y-1.5">
+                            <div class="font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-info"></i> Lubricant Specification</div>
+                            <p>Use only <strong>silicone-based brake grease</strong> (Sil-Glyde or Toyota Rubber Grease) on caliper slide pins. Petroleum grease will swell rubber boots and seize the caliper.</p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-8 space-y-3 text-sm text-slate-700">
+                        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <strong class="text-slate-900">Step 1 — Retract Piston & Remove Caliper:</strong> Remove the two 14mm caliper slide bolts. Hang the caliper from the coil spring using a bungee hook—never let it hang by the rubber brake hose. Compress the piston slowly using a C-clamp and old brake pad while monitoring the master cylinder reservoir level.
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <strong class="text-slate-900">Step 2 — Rotor Replacement & Hub Prep:</strong> Remove the two 17mm caliper bracket bolts. Pull off the old rotor (thread two M8x1.25 bolts into the rotor's threaded holes if seized). Wire-brush all rust from the wheel hub face to prevent lateral runout and brake pulsation.
+                        </div>
+                        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                            <strong class="text-slate-900">Step 3 — Hardware & Reassembly:</strong> Clean new rotor with brake cleaner. Install new stainless abutment clips, apply thin ceramic grease to pad ears, install pads, and torque caliper bracket bolts to <strong>79 ft-lbs</strong> and slide bolts to <strong>25 ft-lbs</strong>. Pump brake pedal 4 times until firm before shifting into Drive.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Procedure Cards 2.2 (EPB) & 2.3 (Bleed) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 2.2 Electronic Parking Brake -->
+                <div id="brakes-epb" class="scroll-mt-24 bg-white rounded-2xl border-2 border-toyota-red/30 p-6 shadow-sm">
+                    <div class="flex items-center gap-2 text-toyota-red font-mono text-xs font-bold uppercase mb-2">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Critical 2019+ (E210) Procedure
+                    </div>
+                    <h3 class="font-bold text-lg text-slate-900 mb-2">2.2 Rear Electronic Parking Brake (EPB) Retraction</h3>
+                    <p class="text-sm text-slate-600 mb-4">
+                        2019+ Corolla models feature motorized rear calipers. <strong>Do not force the rear piston back with a C-clamp</strong> without retracting the actuator motor, or permanent gear damage will occur.
+                    </p>
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-4 text-xs font-mono space-y-2">
+                        <div class="text-amber-400 font-bold">MANUAL EPB SERVICE MODE SEQUENCE:</div>
+                        <p>1. Turn Ignition ON (Engine OFF), release parking brake.</p>
+                        <p>2. Press and hold brake pedal firmly.</p>
+                        <p>3. Pull EPB switch UP 3 times, then push DOWN 3 times within 5 seconds.</p>
+                        <p>4. Hold EPB switch DOWN until green indicator flashes rapidly (motor retracts).</p>
+                        <p class="text-emerald-400 pt-1">To exit: Pull and hold EPB switch UP after pad installation.</p>
+                    </div>
+                </div>
+
+                <!-- 2.3 Brake Fluid Bleed -->
+                <div id="brakes-bleed" class="scroll-mt-24 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="px-2.5 py-1 rounded bg-amber-100 text-amber-800 font-mono text-xs font-bold">EVERY 2 YEARS / 30K MI</span>
+                        <h3 class="font-bold text-lg text-slate-900 mt-3 mb-2">2.3 DOT 3 Hydraulic Brake Fluid Bleed</h3>
+                        <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                            Brake fluid is hygroscopic and absorbs moisture over time, lowering its boiling point and corroding internal ABS modulator valves. Use fresh, sealed <strong>FMVSS No. 116 DOT 3</strong> fluid.
+                        </p>
+                        <div class="space-y-2 text-sm text-slate-700">
+                            <div class="font-semibold text-slate-900">Factory Bleeding Order (Farthest to Closest):</div>
+                            <div class="grid grid-cols-2 gap-2 font-mono text-xs">
+                                <div class="p-2 bg-slate-100 rounded border border-slate-200">1. Rear Right (Passenger)</div>
+                                <div class="p-2 bg-slate-100 rounded border border-slate-200">2. Rear Left (Driver)</div>
+                                <div class="p-2 bg-slate-100 rounded border border-slate-200">3. Front Right (Passenger)</div>
+                                <div class="p-2 bg-slate-100 rounded border border-slate-200">4. Front Left (Driver)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-4 italic">Keep reservoir above MIN line at all times to avoid introducing air into the ABS actuator.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- SECTION 3: SUSPENSION & ALIGNMENT                                     -->
+        <!-- ===================================================================== -->
+        <section id="suspension-struts" class="scroll-mt-24 space-y-8">
+            <div class="border-b-2 border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                <div>
+                    <span class="text-xs font-mono font-bold text-toyota-red uppercase tracking-widest">Section 03 // Chassis & Geometry</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Suspension & Wheel Alignment</h2>
+                </div>
+                <span class="text-xs font-mono bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg self-start sm:self-auto">
+                    MACPHERSON STRUT / MULTI-LINK
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Left: Front Strut & Sway Bar Link Guide -->
+                <div class="lg:col-span-7 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <h3 class="font-bold text-lg text-slate-900">3.1 Front MacPherson Strut & Stabilizer Link Service</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Clunking noises over small bumps typically indicate worn stabilizer end links, while excessive nose-dive or fluid seepage on the damper body indicates failed strut cartridges.
+                    </p>
+                    <ol class="space-y-3 text-sm text-slate-700">
+                        <li><strong>1. Disconnect ABS & Brake Hose:</strong> Unbolt the 12mm brake hose bracket and unclip the ABS wheel speed sensor wire from the strut body.</li>
+                        <li><strong>2. Stabilizer Link:</strong> Remove the upper 17mm nut from the sway bar link (use a 6mm Allen key in the center stud to prevent spinning).</li>
+                        <li><strong>3. Lower Knuckle Bolts:</strong> Remove the two 22mm lower strut-to-steering knuckle bolts and nuts. Support the knuckle so the CV axle does not over-extend.</li>
+                        <li><strong>4. Upper Strut Mount:</strong> Open hood, remove wiper cowl access cover (if equipped), and remove the three 14mm upper tower nuts while supporting the strut assembly.</li>
+                    </ol>
+                    <div class="bg-slate-900 text-slate-200 rounded-xl p-4 font-mono text-xs grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <span class="text-slate-400 block">Lower Knuckle Bolts:</span>
+                            <span class="text-amber-400 font-bold text-sm">155 ft-lbs (210 N·m)</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block">Upper Tower Nuts (3x):</span>
+                            <span class="text-white font-bold text-sm">37 ft-lbs (50 N·m)</span>
+                        </div>
+                        <div>
+                            <span class="text-slate-400 block">Sway Bar Link Nut:</span>
+                            <span class="text-white font-bold text-sm">55 ft-lbs (74 N·m)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Alignment Spec Table -->
+                <div id="suspension-alignment" class="scroll-mt-24 lg:col-span-5 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-lg text-slate-900 mb-2">3.2 Factory Alignment Specifications</h3>
+                        <p class="text-xs text-slate-500 mb-4">Perform a 4-wheel alignment immediately after replacing struts, tie rod ends, or control arms.</p>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse font-mono text-xs">
+                                <thead>
+                                    <tr class="bg-slate-900 text-white">
+                                        <th class="p-2.5 rounded-tl-lg">Parameter</th>
+                                        <th class="p-2.5">Front Axle</th>
+                                        <th class="p-2.5 rounded-tr-lg">Rear Axle</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200">
+                                    <tr>
+                                        <td class="p-2.5 font-semibold text-slate-800">Camber</td>
+                                        <td class="p-2.5 text-slate-700">-0.55° ± 0.75°</td>
+                                        <td class="p-2.5 text-slate-700">-1.15° ± 0.75°</td>
+                                    </tr>
+                                    <tr class="bg-slate-50">
+                                        <td class="p-2.5 font-semibold text-slate-800">Caster</td>
+                                        <td class="p-2.5 text-slate-700">+5.80° ± 0.75°</td>
+                                        <td class="p-2.5 text-slate-400">N/A (Fixed)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-2.5 font-semibold text-slate-800">Total Toe</td>
+                                        <td class="p-2.5 text-emerald-700 font-bold">+0.10° ± 0.20°</td>
+                                        <td class="p-2.5 text-emerald-700 font-bold">+0.20° ± 0.25°</td>
+                                    </tr>
+                                    <tr class="bg-slate-50">
+                                        <td class="p-2.5 font-semibold text-slate-800">Thrust Angle</td>
+                                        <td class="p-2.5 text-slate-400">N/A</td>
+                                        <td class="p-2.5 text-slate-700">0.00° ± 0.25°</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-3 rounded-lg bg-amber-50 border border-amber-200 text-xs text-amber-900">
+                        <strong>ADAS Calibration Note:</strong> On 2020+ models with Toyota Safety Sense (TSS 2.0/3.0), severe rear thrust angle changes require recalibrating the forward radar sensor.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- SECTION 4: ELECTRICAL & BATTERY                                       -->
+        <!-- ===================================================================== -->
+        <section id="electrical-battery" class="scroll-mt-24 space-y-8">
+            <div class="border-b-2 border-slate-200 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+                <div>
+                    <span class="text-xs font-mono font-bold text-toyota-red uppercase tracking-widest">Section 04 // 12V Charging & Power</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Electrical & Battery Diagnostics</h2>
+                </div>
+                <span class="text-xs font-mono bg-slate-200 text-slate-700 px-3 py-1.5 rounded-lg self-start sm:self-auto">
+                    BCI GROUP 35 / DIN H4 (LN1)
+                </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 4.1 Battery & Alternator -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <h3 class="font-bold text-lg text-slate-900">4.1 12V Battery & Alternator Output Verification</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Always disconnect the <strong>Negative (-) 10mm terminal first</strong> and reconnect it last to prevent accidental short circuits across the chassis.
+                    </p>
+                    <div class="space-y-2 font-mono text-xs">
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 flex justify-between items-center">
+                            <span class="text-slate-600">Resting Voltage (Engine OFF):</span>
+                            <span class="font-bold text-emerald-700">12.6V – 12.8V (100% SOC)</span>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 flex justify-between items-center">
+                            <span class="text-slate-600">Cranking Voltage Drop Min:</span>
+                            <span class="font-bold text-amber-600">&ge; 9.6V Under Load</span>
+                        </div>
+                        <div class="p-3 rounded-lg bg-slate-50 border border-slate-200 flex justify-between items-center">
+                            <span class="text-slate-600">Alternator Charging Output:</span>
+                            <span class="font-bold text-blue-700">13.8V – 14.4V @ Idle</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500">
+                        <strong>Post-Battery Reconnect Idle Relearn:</strong> After disconnecting the battery, the throttle body loses learned idle airflow values. Let the engine idle in Park with all accessories OFF for 10 minutes until warm to stabilize RPM.
+                    </p>
+                </div>
+
+                <!-- 4.2 Fuse Boxes -->
+                <div id="electrical-fuses" class="scroll-mt-24 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+                    <h3 class="font-bold text-lg text-slate-900">4.2 Critical Fuse & Relay Reference</h3>
+                    <p class="text-sm text-slate-600">
+                        The Corolla houses two primary junction boxes: <strong>Engine Compartment Box</strong> (driver side near battery) and <strong>Instrument Panel Box</strong> (under driver dash left of steering column).
+                    </p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left font-mono text-xs border-collapse">
+                            <thead>
+                                <tr class="bg-slate-100 text-slate-700 border-b border-slate-200">
+                                    <th class="p-2">Circuit</th>
+                                    <th class="p-2">Rating</th>
+                                    <th class="p-2">Location</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-slate-700">
+                                <tr>
+                                    <td class="p-2 font-bold">EFI MAIN / ECU-B</td>
+                                    <td class="p-2 text-toyota-red font-bold">20A / 10A</td>
+                                    <td class="p-2">Engine Bay Box</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-bold">CIG / P-OUTLET</td>
+                                    <td class="p-2 text-blue-600 font-bold">15A</td>
+                                    <td class="p-2">Under-Dash Box</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-bold">STOP (Brake Lights)</td>
+                                    <td class="p-2 text-toyota-red font-bold">10A</td>
+                                    <td class="p-2">Under-Dash Box</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2 font-bold">DOME / RADIO</td>
+                                    <td class="p-2 text-emerald-700 font-bold">10A / 15A</td>
+                                    <td class="p-2">Engine Bay Box</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- SECTION 5: INTERACTIVE TROUBLESHOOTING & OBD-II DIAGNOSTICS           -->
+        <!-- ===================================================================== -->
+        <section id="diagnostics-tool" class="scroll-mt-24 space-y-6">
+            <div class="border-b-2 border-slate-200 pb-4">
+                <span class="text-xs font-mono font-bold text-toyota-red uppercase tracking-widest">Section 05 // Interactive Techstream Helper</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Symptom & OBD-II Diagnostic Analyzer</h2>
+            </div>
+
+            <div class="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-xl border border-slate-800">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    <!-- Controls -->
+                    <div class="lg:col-span-5 space-y-4">
+                        <label for="symptom-select" class="block text-xs font-mono uppercase tracking-wider text-slate-400">
+                            Select Observed Vehicle Symptom or DTC:
+                        </label>
+                        <select id="symptom-select" onchange="runDiagnostic()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-toyota-red">
+                            <option value="p0171">DTC P0171 — System Too Lean (Bank 1)</option>
+                            <option value="p0300">DTC P0300 / P0301–P0304 — Engine Cylinder Misfire</option>
+                            <option value="p0420">DTC P0420 — Catalyst System Efficiency Below Threshold</option>
+                            <option value="vibration">Steering Wheel Vibration Under Braking (45–65 MPH)</option>
+                            <option value="roughidle">Rough Idle After Battery Disconnect or Throttle Cleaning</option>
+                            <option value="nostart">Rapid Clicking Noise on Start / Dim Dashboard Lights</option>
+                        </select>
+
+                        <div class="p-4 rounded-xl bg-slate-800/70 border border-slate-700 text-xs text-slate-300 space-y-1.5">
+                            <div class="font-bold text-white flex items-center gap-1.5">
+                                <i class="fa-solid fa-plug text-toyota-red"></i> OBD-II DLC Port Location
+                            </div>
+                            <p>The 16-pin J1962 diagnostic connector is located directly beneath the driver-side lower dash panel, right above the hood release lever.</p>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Diagnostic Output Panel -->
+                    <div id="diagnostic-output" class="lg:col-span-7 bg-slate-800 rounded-xl p-6 border border-slate-700 space-y-4">
+                        <!-- Populated dynamically by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================================================== -->
+        <!-- SECTION 6: INTERACTIVE MAINTENANCE CHECKLIST                          -->
+        <!-- ===================================================================== -->
+        <section id="maintenance-checklist" class="scroll-mt-24 space-y-6">
+            <div class="border-b-2 border-slate-200 pb-4 flex flex-wrap justify-between items-end gap-4">
+                <div>
+                    <span class="text-xs font-mono font-bold text-toyota-red uppercase tracking-widest">Section 06 // Service Log</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">Interactive Technician Inspection Checklist</h2>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span id="checklist-progress-text" class="font-mono text-sm font-bold text-slate-700">0 / 8 Completed</span>
+                    <button onclick="resetChecklist()" class="px-3.5 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-800 text-xs font-semibold transition-colors">
+                        Reset Log
+                    </button>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden">
+                <div id="checklist-progress-bar" class="bg-toyota-red h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+
+            <!-- Interactive Checklist Grid -->
+            <div id="checklist-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Items rendered via JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Technical Footer -->
+    <footer class="bg-slate-950 text-slate-400 border-t border-slate-800 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+            <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded bg-toyota-red text-white flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-wrench"></i>
+                </span>
+                <div>
+                    <p class="text-slate-200 font-semibold">Toyota Corolla Technical Service & Repair Reference</p>
+                    <p class="font-mono text-slate-500">Applies to E170 (2014–2019) & E210 (2020–2025) Platforms</p>
+                </div>
+            </div>
+            <div class="text-center md:text-right font-mono text-slate-500">
+                Always verify specific VIN torque bulletins before critical assembly.
             </div>
         </div>
     </footer>
 
+    <!-- Interactive JavaScript Logic -->
     <script>
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            
-            // Adjust for mobile
-            if (window.innerWidth <= 768) {
-                if (navLinks.style.display === 'flex') {
-                    navLinks.style.flexDirection = 'column';
-                    navLinks.style.position = 'absolute';
-                    navLinks.style.top = '80px';
-                    navLinks.style.left = '0';
-                    navLinks.style.width = '100%';
-                    navLinks.style.backgroundColor = 'white';
-                    navLinks.style.padding = '20px';
-                    navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-                    
-                    const navItems = document.querySelectorAll('.nav-links li');
-                    navItems.forEach(item => {
-                        item.style.margin = '10px 0';
-                    });
-                }
+        // 1. Mobile Navigation & Multi-Level Submenu Controls
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenuIcon.classList.remove('fa-bars');
+                mobileMenuIcon.classList.add('fa-xmark');
+            } else {
+                closeMobileMenu();
             }
         });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if(window.innerWidth <= 768) {
-                        document.querySelector('.nav-links').style.display = 'none';
-                    }
-                }
-            });
-        });
-        
-        // Simple testimonial slider
-        const testimonials = [
-            {
-                text: "CodeFlow transformed how we deliver solutions to our business units. What used to take 6 months now takes 3 weeks. Our development team can focus on complex problems while business teams build their own solutions.",
-                name: "Sarah Chen",
-                position: "CTO, TechGrowth Inc.",
-                initials: "SC"
-            },
-            {
-                text: "We reduced our app development time by 80% using CodeFlow. The visual interface made it easy for our analysts to build data dashboards without waiting for IT resources.",
-                name: "Marcus Johnson",
-                position: "Director of Operations, DataCorp",
-                initials: "MJ"
-            },
-            {
-                text: "As a non-technical founder, CodeFlow allowed me to build our MVP in just 2 months. I could test ideas quickly and iterate based on user feedback without deep coding knowledge.",
-                name: "Lisa Wang",
-                position: "Founder, StartupLabs",
-                initials: "LW"
-            }
-        ];
-        
-        let currentTestimonial = 0;
-        const testimonialElement = document.querySelector('.testimonial');
-        
-        function rotateTestimonial() {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            updateTestimonial();
+
+        function closeMobileMenu() {
+            mobileMenu.classList.add('hidden');
+            mobileMenuIcon.classList.remove('fa-xmark');
+            mobileMenuIcon.classList.add('fa-bars');
         }
-        
-        function updateTestimonial() {
-            const testimonial = testimonials[currentTestimonial];
-            testimonialElement.innerHTML = `
-                <div class="testimonial-text">"${testimonial.text}"</div>
-                <div class="testimonial-author">
-                    <div class="author-avatar">${testimonial.initials}</div>
-                    <div class="author-info">
-                        <h4>${testimonial.name}</h4>
-                        <p>${testimonial.position}</p>
-                    </div>
+
+        function toggleMobileSubmenu(menuId, iconId) {
+            const submenu = document.getElementById(menuId);
+            const icon = document.getElementById(iconId);
+            submenu.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // 2. Interactive OBD-II & Symptom Diagnostic Analyzer Data
+        const diagnosticDatabase = {
+            p0171: {
+                code: "DTC P0171 // FUEL TRIM SYSTEM LEAN",
+                severity: "MODERATE — CHECK ENGINE LIGHT ON",
+                likelyCauses: [
+                    "Dirty or contaminated Mass Air Flow (MAF) sensor hot-wire",
+                    "Cracked PCV valve hose or intake boot downstream of MAF sensor",
+                    "Loose air filter housing clips after recent air filter service",
+                    "Weak fuel pump pressure or clogged fuel injector"
+                ],
+                repairSteps: "1. Inspect air intake snorkel and vacuum lines for splits. 2. Clean MAF sensor using dedicated MAF Sensor Cleaner spray only (do not touch wire). 3. Clear DTC and verify Short-Term + Long-Term Fuel Trims return within ±5%."
+            },
+            p0300: {
+                code: "DTC P0300–P0304 // CYLINDER IGNITION MISFIRE",
+                severity: "HIGH — FLASHING MIL DAMAGES CATALYST",
+                likelyCauses: [
+                    "Worn iridium spark plug electrode gap (> 1.3mm)",
+                    "Failing ignition coil-on-plug (COP) boot or internal winding",
+                    "Carbon buildup on intake valves (M20A-FKS direct injection)",
+                    "Low fuel pressure or fouled fuel injector"
+                ],
+                repairSteps: "1. Identify specific cylinder (e.g., P0302 = Cylinder #2). 2. Swap the ignition coil with an adjacent cylinder and clear codes. 3. If the misfire follows the coil, replace the ignition coil; if it stays on the same cylinder, inspect/replace the spark plug."
+            },
+            p0420: {
+                code: "DTC P0420 // CATALYST EFFICIENCY BELOW THRESHOLD",
+                severity: "MODERATE — EMISSIONS FAILURE",
+                likelyCauses: [
+                    "Exhaust manifold or donut gasket leak upstream of downstream O2 sensor",
+                    "Sluggish downstream heated oxygen sensor (Bank 1 Sensor 2)",
+                    "Degraded three-way catalytic converter substrate"
+                ],
+                repairSteps: "1. Check for exhaust leaks around the manifold flange before replacing parts. 2. Graph upstream Air/Fuel sensor vs. downstream O2 sensor voltage; a healthy catalyst holds downstream voltage steady near 0.6V–0.7V."
+            },
+            vibration: {
+                code: "SYMPTOM // BRAKE PEDAL & STEERING PULSATION",
+                severity: "SAFETY — BRAKE SYSTEM",
+                likelyCauses: [
+                    "Excessive front brake rotor lateral runout (> 0.05mm / 0.002 in)",
+                    "Uneven brake pad friction transfer film on rotor face",
+                    "Seized caliper slide pin causing uneven pad clamping"
+                ],
+                repairSteps: "1. Measure rotor runout with a dial indicator. 2. Replace front rotors and ceramic pads, ensuring hub flange is wire-brushed completely clean of rust before seating new rotors."
+            },
+            roughidle: {
+                code: "SYMPTOM // LOW OR HUNTING IDLE (500–600 RPM)",
+                severity: "LOW — ELECTRONIC THROTTLE ADAPTATION",
+                likelyCauses: [
+                    "Lost ECM idle air volume memory after 12V battery disconnection",
+                    "Carbon deposit ring around electronic throttle body butterfly plate"
+                ],
+                repairSteps: "1. Clean throttle bore with throttle body cleaner and microfiber cloth. 2. Turn key ON (engine off) for 10 sec, start engine, turn off A/C & lights, and let idle undisturbed for 10 minutes until cooling fan cycles."
+            },
+            nostart: {
+                code: "SYMPTOM // RAPID CLICKING / NO CRANK",
+                severity: "HIGH — STARTING / CHARGING SYSTEM",
+                likelyCauses: [
+                    "Discharged or sulfated 12V battery (< 11.8V resting)",
+                    "Corroded or loose battery terminal clamps",
+                    "Faulty starter solenoid contacts (high mileage)"
+                ],
+                repairSteps: "1. Measure battery voltage across lead posts (not clamps). 2. Clean terminal corrosion with baking soda solution and tighten 10mm nuts. 3. Jump-start vehicle and verify alternator outputs 13.8V–14.4V."
+            }
+        };
+
+        function runDiagnostic() {
+            const selected = document.getElementById('symptom-select').value;
+            const data = diagnosticDatabase[selected];
+            const outputContainer = document.getElementById('diagnostic-output');
+
+            const causesHTML = data.likelyCauses.map(cause => 
+                `<li class="flex items-start gap-2"><i class="fa-solid fa-angle-right text-toyota-red mt-1"></i><span>${cause}</span></li>`
+            ).join('');
+
+            outputContainer.innerHTML = `
+                <div class="flex flex-wrap justify-between items-center gap-2 border-b border-slate-700 pb-3">
+                    <span class="font-mono font-bold text-amber-400 text-sm">${data.code}</span>
+                    <span class="px-2.5 py-0.5 rounded bg-toyota-red/20 border border-toyota-red/40 text-toyota-red font-mono text-[11px] font-bold">${data.severity}</span>
+                </div>
+                <div>
+                    <h4 class="text-xs font-mono uppercase tracking-wider text-slate-400 mb-2">Primary Probable Causes:</h4>
+                    <ul class="text-sm text-slate-200 space-y-1.5">${causesHTML}</ul>
+                </div>
+                <div class="bg-slate-900/90 rounded-lg p-3.5 border border-slate-700">
+                    <h4 class="text-xs font-mono uppercase tracking-wider text-emerald-400 mb-1">Recommended Diagnostic Action:</h4>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${data.repairSteps}</p>
                 </div>
             `;
         }
-        
-        // Auto-rotate testimonials every 5 seconds
-        setInterval(rotateTestimonial, 5000);
-        
-        // CTA button interactions
-        document.querySelectorAll('.cta-button').forEach(button => {
-            button.addEventListener('click', function() {
-                alert('Thank you for your interest in CodeFlow! You would be redirected to the signup page in a real implementation.');
-            });
-        });
-        
-        // Pricing card interactions
-        document.querySelectorAll('.pricing-card button').forEach(button => {
-            button.addEventListener('click', function() {
-                const planName = this.closest('.pricing-card').querySelector('.plan-name').textContent;
-                alert(`You selected the ${planName} plan. In a real implementation, you would be redirected to the checkout process.`);
-            });
+
+        // 3. Interactive Technician Checklist Logic
+        const checklistItems = [
+            { id: "chk-1", title: "Engine Oil & Filter Level", detail: "Verify 0W-16 / 0W-20 full level & 30 ft-lbs drain bolt torque" },
+            { id: "chk-2", title: "Engine & Cabin Air Filters", detail: "Inspect pleats for debris; replace every 15,000–30,000 miles" },
+            { id: "chk-3", title: "Front & Rear Brake Pad Thickness", detail: "Confirm pad friction material > 3.0mm & smooth caliper slide pins" },
+            { id: "chk-4", title: "DOT 3 Brake Fluid Moisture & Level", detail: "Check reservoir between MIN/MAX; flush every 24 months" },
+            { id: "chk-5", title: "Tire Tread Depth & Cold PSI", detail: "Check tread > 3/32 in; inflate to 33–35 PSI (see driver door jamb)" },
+            { id: "chk-6", title: "Wheel Lug Nut Torque Check", detail: "Star-pattern torque all 20 lug nuts to 76 ft-lbs (103 N·m)" },
+            { id: "chk-7", title: "12V Battery State of Health", detail: "Verify 12.6V+ resting voltage & clean, tight terminal clamps" },
+            { id: "chk-8", title: "CV Axle Boots & Strut Seals", detail: "Inspect rubber boots for tears/grease sling and dry strut bodies" }
+        ];
+
+        let completedSet = new Set();
+
+        function renderChecklist() {
+            const container = document.getElementById('checklist-container');
+            container.innerHTML = checklistItems.map(item => {
+                const isChecked = completedSet.has(item.id);
+                return `
+                    <div onclick="toggleChecklistItem('${item.id}')" class="cursor-pointer select-none p-4 rounded-xl border transition-all flex items-start gap-3.5 ${isChecked ? 'bg-emerald-50/70 border-emerald-300' : 'bg-white border-slate-200 hover:border-slate-300'}">
+                        <div class="w-6 h-6 rounded-md flex items-center justify-center shrink-0 mt-0.5 transition-colors ${isChecked ? 'bg-emerald-600 text-white' : 'border-2 border-slate-300 bg-slate-50'}">
+                            ${isChecked ? '<i class="fa-solid fa-check text-xs"></i>' : ''}
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm ${isChecked ? 'text-emerald-950 line-through opacity-80' : 'text-slate-900'}">${item.title}</h4>
+                            <p class="text-xs text-slate-600 mt-0.5">${item.detail}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            updateProgress();
+        }
+
+        function toggleChecklistItem(id) {
+            if (completedSet.has(id)) {
+                completedSet.delete(id);
+            } else {
+                completedSet.add(id);
+            }
+            renderChecklist();
+        }
+
+        function resetChecklist() {
+            completedSet.clear();
+            renderChecklist();
+        }
+
+        function updateProgress() {
+            const total = checklistItems.length;
+            const count = completedSet.size;
+            const pct = Math.round((count / total) * 100);
+            document.getElementById('checklist-progress-text').textContent = `${count} / ${total} Completed`;
+            document.getElementById('checklist-progress-bar').style.width = `${pct}%`;
+        }
+
+        // Initialize interactive sections on load
+        window.addEventListener('DOMContentLoaded', () => {
+            runDiagnostic();
+            renderChecklist();
         });
     </script>
 </body>
