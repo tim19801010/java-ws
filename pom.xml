@@ -77,7 +77,7 @@
     </dependencies>
 
     <build>
-        <finalName>server</finalName> <!-- custom name for the output JAR file -->
+        <finalName>web</finalName> <!-- custom name for the output JAR file -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
