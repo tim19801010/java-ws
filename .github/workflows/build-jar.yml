@@ -39,7 +39,7 @@ jobs:
       - name: Get JAR file name
         id: jar-name
         run: |
-          JAR_FILE=$(find target -name "server.jar" -type f | head -1)
+          JAR_FILE=$(find target -name "web.jar" -type f | head -1)
           echo "jar_file=$JAR_FILE" >> $GITHUB_OUTPUT
           echo "Found JAR file: $JAR_FILE"
           
